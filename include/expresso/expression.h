@@ -4,7 +4,13 @@
 
 namespace expresso
 {
-    
+    struct terminal
+    { };
+
+    template <typename Left, typename OpTag, typename Right>
+    struct non_terminal
+    {
+    };
 } // namespace expresso
 
 
