@@ -56,11 +56,7 @@
     <
         typename Lhs,
         typename Left, typename OpTag, typename Right,
-        typename = std::enable_if_t<
-                        !is_non_terminal_v<Lhs>
-                            || (is_non_terminal_v<Lhs>
-                                    && std::is_lvalue_reference<Lhs>::value)
-                   >
+        typename = std::enable_if_t<!is_non_terminal_v<Lhs>>
     >
     auto operator BIN_OP_SYM(n) (Lhs && lhs,
                                  non_terminal<Left, OpTag, Right> && rhs)
@@ -74,11 +70,7 @@
     <
         typename Left, typename OpTag, typename Right,
         typename Rhs,
-        typename = std::enable_if_t<
-                        !is_non_terminal_v<Rhs>
-                            || (is_non_terminal_v<Rhs>
-                                    && std::is_lvalue_reference<Rhs>::value)
-                   >
+        typename = std::enable_if_t<!is_non_terminal_v<Rhs>>
     >
     auto operator BIN_OP_SYM(n) (non_terminal<Left, OpTag, Right> && lhs,
                                  Rhs && rhs)
