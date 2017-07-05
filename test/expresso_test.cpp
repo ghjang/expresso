@@ -35,8 +35,10 @@ TEST_CASE("equal_to expressions", "[expresso]")
 
 TEST_CASE("complex expressions", "[expresso]")
 {
-    //auto expr0 = _1 + 1 && _2;
+    auto expr0 = _1 + 1 && _2;
+    auto expr1 = _1 && 1 + _2;
 
     // both sides are rvalue non_terminal.
-    //auto expr1 = _1 + 1 && _2 - 2;
+    auto expr2 = _1 + 1 && _2 - 2;
+    auto expr3 = _1 < 10 || (_2 > 20 && _3 != 30);
 }

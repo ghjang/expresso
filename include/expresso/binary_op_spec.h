@@ -7,7 +7,15 @@
 
 
 //==============================================================================
-    template <typename Lhs>
+    template
+    <
+        typename Lhs,
+        typename = std::enable_if_t<
+                        !is_non_terminal_v<Lhs>
+                            || (is_non_terminal_v<Lhs>
+                                    && std::is_lvalue_reference<Lhs>::value)
+                   >
+    >
     auto operator BIN_OP_SYM(n) (Lhs && lhs, terminal const& rhs)
     {
         return non_terminal<
@@ -17,7 +25,15 @@
                >{};
     }
 
-    template <typename Rhs>
+    template
+    <
+        typename Rhs,
+        typename = std::enable_if_t<
+                        !is_non_terminal_v<Rhs>
+                            || (is_non_terminal_v<Rhs>
+                                    && std::is_lvalue_reference<Rhs>::value)
+                   >
+    >
     auto operator BIN_OP_SYM(n) (terminal const& lhs, Rhs && rhs)
     {
         return non_terminal<
@@ -39,7 +55,12 @@
     template
     <
         typename Lhs,
-        typename Left, typename OpTag, typename Right
+        typename Left, typename OpTag, typename Right,
+        typename = std::enable_if_t<
+                        !is_non_terminal_v<Lhs>
+                            || (is_non_terminal_v<Lhs>
+                                    && std::is_lvalue_reference<Lhs>::value)
+                   >
     >
     auto operator BIN_OP_SYM(n) (Lhs && lhs,
                                  non_terminal<Left, OpTag, Right> && rhs)
@@ -52,7 +73,12 @@
     template
     <
         typename Left, typename OpTag, typename Right,
-        typename Rhs
+        typename Rhs,
+        typename = std::enable_if_t<
+                        !is_non_terminal_v<Rhs>
+                            || (is_non_terminal_v<Rhs>
+                                    && std::is_lvalue_reference<Rhs>::value)
+                   >
     >
     auto operator BIN_OP_SYM(n) (non_terminal<Left, OpTag, Right> && lhs,
                                  Rhs && rhs)
