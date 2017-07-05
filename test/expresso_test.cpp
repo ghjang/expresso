@@ -6,7 +6,7 @@
 using namespace expresso;
 
 
-TEST_CASE("equal_to expression", "[expresso]")
+TEST_CASE("equal_to expressions", "[expresso]")
 {
     auto expr0 = 1 == 1;
     static_assert(std::is_same<bool, decltype(expr0)>());
@@ -20,3 +20,4 @@ TEST_CASE("equal_to expression", "[expresso]")
 
     auto expr6 = expr4 == expr5;
 }
+
